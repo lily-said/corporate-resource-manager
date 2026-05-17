@@ -1,7 +1,9 @@
 export interface Iemployee {
     id:number;
-    jobtitle:string;
     name:string;
+    jobtitle:string;
+    email:string;
+    phone:string;
     birthday:Date;
     imgUrl:string;
 }
