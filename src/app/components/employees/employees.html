@@ -1,1 +1,17 @@
-<p>employees works!</p>
+<div class="row row-cols-1 row-cols-md-4 g-4">
+
+    @for (employee of employees; track employee.id) {
+        <div class="col">
+            <div class="card">
+            <img [src]="employee.imgUrl" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h4 class="card-title"> {{employee.name}} </h4>
+                <h6 class="card-text"> {{employee.jobtitle}} </h6>
+                <p class="card-text"> Email: {{employee.email}} </p>
+                <p class="card-text"> Phone: {{employee.phone}}</p>
+            </div>
+            </div>
+        </div>
+    }
+
+</div>
