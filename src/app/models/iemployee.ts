@@ -4,6 +4,6 @@ export interface Iemployee {
     jobtitle:string;
     email:string;
     phone:string;
-    birthday:Date;
+    joindate:Date;
     imgUrl:string;
 }

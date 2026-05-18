@@ -6,9 +6,10 @@
             <img [src]="employee.imgUrl" class="card-img-top" alt="...">
             <div class="card-body">
                 <h4 class="card-title"> {{employee.name}} </h4>
-                <h6 class="card-text"> {{employee.jobtitle}} </h6>
+                <h5 class="card-text"> {{employee.jobtitle}} </h5>
                 <p class="card-text"> Email: {{employee.email}} </p>
-                <p class="card-text"> Phone: {{employee.phone}}</p>
+                <p class="card-text"> Phone: {{employee.phone}} </p>
+                <p class="card-text"> <small class="text-body-secondary">Joined {{employee.joindate | date:'yyyy-MM-dd'}} </small></p>
             </div>
             </div>
         </div>
