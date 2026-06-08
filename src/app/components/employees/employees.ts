@@ -10,6 +10,7 @@ import { DatePipe } from '@angular/common';
 })
 export class Employees {
   employees:Iemployee[]
+  selectedEmployee: Iemployee | null = null;
 
   constructor() {
     this.employees = [
@@ -77,5 +78,13 @@ export class Employees {
       joindate:new Date("2000-07-15"),
       imgUrl:"https://picsum.photos/100"}
     ];
+  }
+
+  openEmployee(emp: Iemployee): void {
+    this.selectedEmployee = emp;
+  }
+
+  closeEmployee():void {
+    this.selectedEmployee = null;
   }
 }
