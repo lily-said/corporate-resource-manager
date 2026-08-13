@@ -10,7 +10,7 @@ Opening:
     http://127.0.0.1:8000/openapi.json    -> the generated JSON schema
 """
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from mock_data import MOCK_EMPLOYEES
@@ -22,10 +22,14 @@ app = FastAPI(
     version="0.1.0",
 )
 
-# Lets Angular (port 4200) call the API (port 8000)
+ALLOWED_ORIGINS = [
+    "http://localhost:4200",
+    "http://127.0.0.1:4200",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],  # the Angular dev server
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],  # allow GET, POST, ...
     allow_headers=["*"],
@@ -43,9 +47,25 @@ def get_employees() -> list[Employee]:
     """
     return MOCK_EMPLOYEES
 
+@app.get(
+    "/api/employees/{id}",
+    response_model=Employee,
+    summary="Get an employee by ID",
+    tags=["employees"]
+)
+def get_employee_by_id(id: int) -> Employee:
+    """Return an employee as a JSON array."""
+    for employee in MOCK_EMPLOYEES:
+        if employee.id == id:
+            return employee
+    raise HTTPException(status_code=404, detail=f"Employee with ID {id} not found")
 
 # is the server alive?
-@app.get("/api/health", summary="Health check", tags=["system"])
+@app.get(
+    "/api/health",
+    summary="Health check",
+    tags=["system"]
+)
 def health_check() -> dict[str, str]:
     """Return a simple status message."""
     return {"status": "ok"}
