@@ -1,6 +1,6 @@
 # CorporateResourceManager
 
-An example CRUD application to track and manage Employee information at whatever corporation. 
+An example CRUD application to track and manage Employee information at a placeholder corporation. 
 Project progress is made incrementally as I further develop Angular and FastAPI proficiency. 
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.10.
